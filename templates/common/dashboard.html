@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+{% load crispy_forms_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+<h3> This is the Dashbard </h3>
+{{form | crispy}}
+<a class="small" href="{% url 'profile' %}">Go to Profile View</a>
+
+</body>
+</html>
