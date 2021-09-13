@@ -37,7 +37,7 @@ DEFAULT_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crudop',
+
 ]
 THIRD_PARTY_APPS = [
     'crispy_forms',
