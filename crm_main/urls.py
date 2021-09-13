@@ -4,7 +4,7 @@ from apps.common.views import HomeView,SignUpView, DashboardView, ProfileView,Pr
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
-
+from crudop.views import CrudView, CreateCrudUser, UpdateCrudUser
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='home'),
@@ -13,6 +13,10 @@ urlpatterns = [
         template_name='common/login.html'
     ),
          name='login'),
+    path('crud/', CrudView.as_view(), name='crud'),
+    path('crud/create', CreateCrudUser.as_view(), name='create-crud'),
+    path('crud/update', UpdateCrudUser.as_view(), name='update-crud'),
+
     path('profile-update/', ProfileUpdateView.as_view(), name='profile-update'),
     path('profile/', ProfileView.as_view(), name='profile'),
 
