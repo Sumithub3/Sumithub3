@@ -14,7 +14,8 @@ from apps.userprofile.models import Profile
 
 class HomeView(TemplateView):
     template_name = 'common/home.html'
-
+class Baseview(TemplateView):
+    template_name = 'base.html'
 
 class SignUpView(CreateView):
 

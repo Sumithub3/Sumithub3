@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from apps.common.views import HomeView,SignUpView, DashboardView, ProfileView,ProfileUpdateView
+from apps.common.views import HomeView,SignUpView, DashboardView, ProfileView,ProfileUpdateView, Baseview
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -16,6 +16,7 @@ urlpatterns = [
 
     path('profile-update/', ProfileUpdateView.as_view(), name='profile-update'),
     path('profile/', ProfileView.as_view(), name='profile'),
+     path('base/', Baseview.as_view(), name='base'),
 
     path('logout/', auth_views.LogoutView.as_view(
         next_page='home'

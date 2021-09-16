@@ -1,38 +1,239 @@
+
 <!DOCTYPE html>
 <html>
-<title>The CRM</title>
-<head>
 
+<head>
+{% load crispy_forms_tags %}
 <style>
-a:link, a:visited {
-  background-color: #FFA500;
-  color: white;
-  padding: 14px 25px;
-  text-align: center;
-  text-decoration: none;
+#container{
+	width: 100%;
+	height: 100%;
+	background-color: #eee;
+}
+#nav{
+	display: block;
+	height: 40px;
+	padding: 5px;
+	color: #fff;
+	align: horizontal;
+	background-color:#34495E ;
+}
+#companyInfo{
+	display:inline-block;
+	width: 350px;
+}
+#searchArea{
+	display:inline-block;
+	align: vertical;
+	height:100%;
+}
+#searchBox{
+	width: 580px;
+	height:90%;
+	background-color: #FEF9E7 ;
+	font-size: 17px;
+	font-family: Fantasy;
+
+}
+#searchBox:focus {
+  border-radius: 1px solid #292a54;
+}
+
+#cName{
+font-family: "Audiowide", sans-serif;
+   width: 50px;
+  height: 70px;
+  animation: mymove 5s infinite;
+}
+
+@keyframes mymove {
+  50% {font-size: 20px;}
+
+}
+#userDetails{
+	display: inline-block;
+	width: 200px;
+	float: right;
+
+}
+#profilePic{
+	display: inline-block;
+	background-color: #8d8ede;
+	margin-right: 12px;
+	float: right;
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+
+}
+#profilePic:hover {
+	border: .1px solid #7273b5;
+}
+#navMenu{
+	display: inline-block;
+	float: right;
+	cursor: pointer;
+	 color: #49c3cf;
+	font-weight: bold;
+	margin-right: 10px;
+
+
+}
+
+#nm{
+	align: center;
+	position: relative;
+	top: 7px;
+	margin: 3px;
+}
+#feedBody{
+
+
+	display: block;
+}
+#postEnvelop{
+	display: block;
+	width: 850px;
+	height: 500px;
+	border-radius: 20px;
+	margin-left: 240px;
+	margin-top: 30px;
+	background-color: #fff;
+
+}
+#postTitle{
+	padding: 30px;
+	font-family : Verdana;
+}
+#logo-image{
+
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: -6px;
+
+}
+
+#postMenu{
+	display: inline-block;
+	float: right;
+	transform: 1s;
+	font-weight: bold;
+	margin-right: 30px;
+	margin-top: 10px;
+}
+#postMenu:hover{
+	cursor: pointer;
+	font-size: 17px;
+}
+#postBody{
+	padding: 20px;
+	margin-left:20px;
+}
+-----------------------------
+.dropbtn {
+  background-color:  #ffad33;
+  padding: 70px;
+   padding-right: 30px;
+  font-size: 25px;
+  border: none;
+  cursor: pointer;
+
+}
+
+.dropdown {
+  position: relative;
   display: inline-block;
 }
 
-a:hover, a:active {
-  background-color: darkorange;
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #b3cccc;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
 }
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #669999}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #b3cccc;
+}
+-----------------------------
+
 </style>
+<Body>
+<div id="container">
+<div id="nav">
+<div id="companyInfo">
+<span id="cName"> CRM Application </span>
+</div>
+<div id="searchArea">
+	<input type="text" id="searchBox"/>
+</div>
+	<div id="userDetails">
+	{% if user.profile %}
+		<div class="logo-image" id="profilePic">
+			<a href="http://127.0.0.1:8000/profile/">
+			<img  id="logo-image"  height="60" width="50"  src="{{user.profile.profile_image.url}}"/>
+				</a>
+		</div>
+	</div>
+	{% endif %}
+	<div class="dropdown" id="dropbtn" >
+  <button class="dropbtn"  style="height:35px;width:60px">Menu</button>
+  <div class="dropdown-content">
+  <a href="#">Home</a>
 
-</head>
+	  {% if user.profile %}
+	  <a href="#">Login</a>
+	  <a href="#">Register</a>
+	  {% else %}
+	  <a href="login">Login</a>
+	  <a href="register">Register</a>
+	  {% endif %}
+  {% if user.profile %}
+	<a href="http://127.0.0.1:8000/changepassword/"> ChangePassword</a>
 
-<body>
+	{% endif %}
+  </div>
+
+	</div>
+
+</div>
+</div>
+<div id="feedBody" >
+	<div class="postEnvelop">
+	<div id="postMenu">
+
+		</div>
+		<div id="postTitle">
+			{% if messages %}
+			{% for message in messages %}
+				<div class="alert alert-{{message.tags}}" role="alert">{{message}}</div>
+			{% endfor %}
+			{% endif %}
 
 
+		</div>
 
-<form action="/action_page.php" color="gray" align="center">
+	</div>
+	</div>
+{% block content %}
+{% endblock %}
 
-<label>Welcom To Django CRM!</label><br><br><br>
-<a href="#" target="">Register/Sign Up</a><br><br>
-<a href="#" target="_blank">Login</a><br><br>
-<a href="#" target="_blank">Forgot Password</a><br><br>
-  
-</form>
-
-
-</body>
-</html>
+</Body>
+</Html>

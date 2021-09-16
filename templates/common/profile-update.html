@@ -24,7 +24,7 @@
                     {% csrf_token %}
                     {{user_form | crispy}}
                     {{profile_form | crispy}}
-                    <button type="submit" class="btn btn-success btn-block">Update</button>
+                    <br><br><button type="submit" class="btn btn-success btn-block">Update</button>
                   </form>
 <a class="small" href="{% url 'profile' %}">Back</a>
 </body>

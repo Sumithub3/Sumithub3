@@ -8,7 +8,7 @@ class Profile(models.Model):
     bio = models.TextField(max_length=500, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     phone_number = models.CharField(max_length=12, blank=True)
-    profile_image = models.ImageField(default='django.jpg', upload_to='users/', null=True, blank=True)
+    profile_image = models.ImageField(default='defaultimg.jpg', upload_to='users/', null=True, blank=False)
 
     def __str__(self):
         return '%s %s' % (self.user.first_name, self.user.last_name)
